@@ -1,13 +1,14 @@
-function createNavBar(){
+function CreateNavBar(){
     return(    
-        <div>
-            <h1>This is a test</h1>
-        </div>    
+        <nav>
+            <img src="logo.png" alt="Logo" />
+            <h1>Mysty</h1>
+        </nav>
     );
 }
 
-export default function createNav(){
+export default function CreateNav(){
     return (
-        <createNavBar />
+        <CreateNavBar />
     );
 }

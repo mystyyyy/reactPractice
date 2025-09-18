@@ -1,9 +1,9 @@
 import './App.css';
-import createNav from './components/navBar.jsx';
+import HomePage from './pages/home.jsx';
 
 function App() {
   return (
-    <createNav />
+    <HomePage />
   );
 }
 
