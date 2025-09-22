@@ -1,15 +1,24 @@
 nav{
     background-color: brown;
     display: flex;
+    color: aliceblue;
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, .25));
+}
 
+ul#navLinkList{
+    margin: auto 0;
 }
 
 li.navLink{
     list-style: none;
+
 }
 
-a{
+li.navLink a{
     text-decoration: none;
+    color: inherit;
 }
 
-/*add drop shadow*/
+nav h1{
+    margin-left: 5%;
+}
