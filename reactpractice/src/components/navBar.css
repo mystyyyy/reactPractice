@@ -1,0 +1,15 @@
+nav{
+    background-color: brown;
+    display: flex;
+
+}
+
+li.navLink{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/*add drop shadow*/

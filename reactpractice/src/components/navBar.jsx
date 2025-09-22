@@ -1,8 +1,12 @@
+import "./navBar.css";
+
 function CreateNavBar(){
     return(    
-        <nav>
-            <img src="logo.png" alt="Logo" />
+        <nav id="navBar">
             <h1>Mysty</h1>
+            <ul>
+                <li class="navLink"><a href="../pages/home.jsx">Portfolio</a></li>
+            </ul>
         </nav>
     );
 }
