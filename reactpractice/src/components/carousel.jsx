@@ -1,12 +1,25 @@
+import React, { useEffect } from 'react';
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from 'embla-carousel-autoplay';
 import "./carousel.css";
 
 function Carousel(){
-    //Carousel to display artwork. Use aws s3 bucket + api to fetch image.
-    //include left/right buttons
-    //include counter of n images
+    const [emblaRef, emblaApi] = useEmblaCarousel({loop: false}, [Autoplay()]);
+
+    useEffect(() => {
+        if (emblaApi){
+            console.log(emblaApi.slideNodes());
+        }
+    })
+
     return(
-        //use embla carousel https://www.embla-carousel.com/get-started/react/
-        <h1>carousel</h1>
+        <div className = "embla" ref ={emblaRef}>
+            <div className = "embla__container">
+                <div className = "embla__slide"><img src = "" alt = "1"/></div>
+                <div className = "embla__slide"><img src = "" alt = "2"/></div>
+                <div className = "embla__slide"><img src = "" alt = "3"/></div>
+            </div>
+        </div>
     );
 }
 
