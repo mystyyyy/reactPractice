@@ -6,12 +6,15 @@ nav{
 }
 
 ul#navLinkList{
+    display: flex;
     margin: auto 0;
+    max-width: auto;
+    width: 100%;
 }
 
 li.navLink{
     list-style: none;
-
+    margin-right: 5%;
 }
 
 li.navLink a{

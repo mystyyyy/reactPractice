@@ -1,25 +1,45 @@
 import React, { useEffect } from 'react';
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from 'embla-carousel-autoplay';
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 import "./carousel.css";
 
-function Carousel(){
-    const [emblaRef, emblaApi] = useEmblaCarousel({loop: false}, [Autoplay()]);
+export function Carousel() {
+    const swiper = new Swiper('.swiper', {
+        loop: true,
+        
+        pagination: {
+            el: '.swiper-pagination',
+        },
 
-    useEffect(() => {
-        if (emblaApi){
-            console.log(emblaApi.slideNodes());
-        }
-    })
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        autoplay: {
+            delay: 4000,
+            pauseOnMouseEnter: true,
+        },
+    });
 
     return(
-        <div className = "embla" ref ={emblaRef}>
-            <div className = "embla__container">
-                <div className = "embla__slide"><img src = "" alt = "1"/></div>
-                <div className = "embla__slide"><img src = "" alt = "2"/></div>
-                <div className = "embla__slide"><img src = "" alt = "3"/></div>
-            </div>
-        </div>
+        <>
+            <h1>My Portfolio!</h1>
+
+
+            <div class = "swiper">
+                <div class = "swiper-wrapper">
+                    <div class = "swiper-slide">1</div>
+                    <div class = "swiper-slide">2</div>
+                    <div class = "swiper-slide">3</div>  
+                </div>
+
+                <div clasas = "swiper-pagination"></div>
+
+                <div class = "swiper-button-prev"></div>
+                <div class = "swiper-button-next"></div>      
+            </div>  
+        </>
     );
 }
 
