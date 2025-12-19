@@ -1,4 +1,13 @@
+:root {
+    --swiper-theme-color: rgb(232,219,195);
+}
+
 .swiper{
-    width: 80vw;
-    height: 75vh;
+    width: 100vw;
+    height: 100vh;
+}
+
+.swiper-image{
+    width: 100vw;
+    height: 100vh;
 }
