@@ -15,7 +15,7 @@
 .modal{
     width: 60vw;
     height: 90vh;
-    border: 3px outset rgb(232,219,195);
+    border: 3px solid rgb(232,219,195);
     background-color:rgb(88,47,41);
     filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, .4));
     z-index: 5;
@@ -50,14 +50,19 @@
 }
 
 .modal-body{
+    height: calc(100vh - 20vh);
+    min-height: 100%;
     max-height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .modalImage{
-    width: 80%;
-    max-height: 100%;
-    margin-top: 2vh;
+    width: auto;
+    max-width: 80%;
+    max-height: 90%;
+    margin: 2vh auto;
+    display:block;
+    border: 3px solid rgb(232,219,195);
 }
 
 h1#portfolioTitle{

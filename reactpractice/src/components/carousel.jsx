@@ -16,19 +16,13 @@ import thumb1 from "../thumbnail/thumbnail1.png";
 import thumb2 from "../thumbnail/thumbnail2.png";
 import thumb3 from "../thumbnail/thumbnail3.png";
 
-// Source: https://stackoverflow.com/questions/70591567/module-not-found-error-cant-resolve-fs-in-react
-// Originally in package.json "Scripts": "react-scripts start/build/test/eject"
-//const fs = require('fs');
-
 const txtFilePath =  "/title.txt";
 const portfolioImgPath = "/portfolioContent/";
 
 // Source: https://stackoverflow.com/questions/55830414/how-to-read-text-file-in-react
 // Source: https://react.dev/reference/react/useEffect
-// Custom hooks
-//
-    //
-    //
+// Custom hooks are functions that lets devs share stateful logic
+// Syntax: Custom hooks must start with "get" i.e. getName
 function GetPortfolioTitles(txtFile){
     const [titles, setTitles] = useState([]);
 
@@ -50,40 +44,44 @@ function GetPortfolioTitles(txtFile){
     return titles;
 }
 
-// Source: https://stackoverflow.com/questions/70938423/render-image-on-button-click-in-react#70938535
+// Source: https://cloudinary.com/guides/front-end-development/how-to-check-if-image-src-is-valid-javascript
+function validImageChecker(imgPath){
+    return new Promise((resolve) => {
+        const img = new Image();
+
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+
+        img.src = imgPath;
+    });
+}
+
 function useGetPortfolioImagePaths(portfolioImgPath, currentImgId){
     const [portfolioImagePaths, setPortfolioImagePaths] = useState([]);
+    const maxImages = 12;
 
     useEffect(()=>{
-        /*
-        let i = 1;
-
-        while(true){
-            let imgPath = portfolioImgPath + currentImgId + "/" + (i) + ".png";
-
-            let response = fetch(imgPath);
-            if (!response.ok){
-                break;
-            }
-
-            console.log(imgPath);
-            portfolioImageContainer.push(imgPath);
-            i++;
+        if (currentImgId == null){
+            setPortfolioImagePaths([]);
+            return;
         }
-        */
 
         let portfolioImageContainer = [];
-        
-        for (let i = 0; i < 5; i ++){
+        for(let i = 0; i < maxImages; i++){
             let imgPath = portfolioImgPath + currentImgId + "/" + (i) + ".png";
-
-            // console.log(imgPath);
-            portfolioImageContainer.push(imgPath);
-        }
+            validImageChecker(imgPath)
+                .then(isValid => {
+                    if (isValid) {
+                        console.log(imgPath);
+                        portfolioImageContainer.push(imgPath);
+                    } else {
+                        return false;
+                    }
+            });
+        };
 
         setPortfolioImagePaths(portfolioImageContainer);
     }, [portfolioImgPath, currentImgId]);
-
 
     return portfolioImagePaths;
 }
@@ -98,7 +96,7 @@ function CreatePortfolioImageElements(portfolioImagePaths){
     // Source: https://codesweetly.com/javascript-map-method/
     return (
         <>
-            {portfolioImagePaths.map((imgPath, i) => <img className = "modalImage" src= {imgPath} alt= {i}/>)}
+            {portfolioImagePaths.map((imgPath, i) => <img className = "modalImage" key = {i} src= {imgPath} alt= {i}/>)}
         </>
     );
 }
@@ -118,7 +116,7 @@ export default function CreateCarousel(){
     const [show, setShow] = useState(false);
     const [currentImgId, setCurrentImgId] = useState(null);
     const [portfolioTitle, setPortfolioTitle] = useState("");
-    const [portfolioImages, setPortfolioImages] = useState(null);
+    //const [portfolioImages, setPortfolioImages] = useState(null);
 
     const portfolioImagePaths = useGetPortfolioImagePaths(portfolioImgPath, currentImgId);
     const titles = GetPortfolioTitles(txtFilePath);
@@ -127,24 +125,38 @@ export default function CreateCarousel(){
         setCurrentImgId(selected.currentTarget.id);
     }
 
+    function closeModal(){
+        setShow(false);
+        // need to initialize swiper for this method to work
+        //swiper.enable();
+    }
+
+    function openModal(){
+        setShow(true); 
+        //swiper.disable();
+    }
+
     useEffect(()=>{
         let portfolioTitleArray = Number(currentImgId) - 1;
         setPortfolioTitle(titles[portfolioTitleArray]);
+        
+        //setPortfolioImages(CreatePortfolioImageElements(portfolioImagePaths));
+        //console.log("Portfolio Images: " + portfolioImages);
     }, [currentImgId, titles]);  
 
-    useEffect(()=>{
-        setPortfolioImages(CreatePortfolioImageElements(portfolioImagePaths));
-    }, [portfolioImagePaths]);  
-    
+    // Passing an array as a dependency is wacky
+    // Source: https://stackoverflow.com/questions/57859484/useeffect-runs-infinite-loop-despite-no-change-in-dependencies
+
     // Equivalent w/o arrow function is:
         // function handleClose(){
         //      setShow(false);
         //  }
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => closeModal();
+    const handleShow = () => openModal(); 
 
     return (
         <>
+            <div id="modalDarkenBg"></div>
             <Swiper
                 modules={[ Navigation, Pagination, Autoplay]}
                 spaceBetween={50}
@@ -156,7 +168,7 @@ export default function CreateCarousel(){
                     clickable: true 
                 }}
                 autoplay={{
-                    delay: 6000,
+                    delay: 5000,
                     pauseOnMouseEnter: true,
                 }}
             >
@@ -195,7 +207,10 @@ export default function CreateCarousel(){
             </Swiper>
 
             {/* Source: https://react-bootstrap.github.io/docs/components/modal/ */}
-            <Modal show={show} onHide={handleClose}>
+            <Modal 
+                show={show}
+                onHide={handleClose}
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>
                         <h1 id="portfolioTitle">
@@ -205,7 +220,9 @@ export default function CreateCarousel(){
                 </Modal.Header>
 
                 <Modal.Body>
-                    {portfolioImages}
+                    <div id="imageWrapper">
+                        {CreatePortfolioImageElements(portfolioImagePaths)}
+                    </div>
                 </Modal.Body>
             </Modal>
         </>
