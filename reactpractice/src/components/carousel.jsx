@@ -9,15 +9,19 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import "./carousel.css";
 
-// source: https://stackoverflow.com/questions/66526268/react-swiper-doesnt-show-images
-// source: https://create-react-app.dev/docs/adding-images-fonts-and-files/
 // Something to consider if many images: https://stackoverflow.com/questions/64922587/import-multiple-images-on-react
 import thumb1 from "../thumbnail/thumbnail1.png";
 import thumb2 from "../thumbnail/thumbnail2.png";
 import thumb3 from "../thumbnail/thumbnail3.png";
+import thumb4 from "../thumbnail/thumbnail4.png";
+import thumb5 from "../thumbnail/thumbnail5.png";
+import thumb6 from "../thumbnail/thumbnail6.png";
+import thumb7 from "../thumbnail/thumbnail7.png";
+import thumb8 from "../thumbnail/thumbnail8.png";
 
 const txtFilePath =  "/title.txt";
 const portfolioImgPath = "/portfolioContent/";
+const maxImages = 8;
 
 // Source: https://stackoverflow.com/questions/55830414/how-to-read-text-file-in-react
 // Source: https://react.dev/reference/react/useEffect
@@ -25,7 +29,6 @@ const portfolioImgPath = "/portfolioContent/";
 // Syntax: Custom hooks must start with "get" i.e. getName
 function GetPortfolioTitles(txtFile){
     const [titles, setTitles] = useState([]);
-
     // useEffects allows you to run side effects (fetch data, update UI, etc.)
     // in response to changes in your component
     // Syntax: useEffect(setup, dependencies)
@@ -46,6 +49,12 @@ function GetPortfolioTitles(txtFile){
 
 // Source: https://cloudinary.com/guides/front-end-development/how-to-check-if-image-src-is-valid-javascript
 function validImageChecker(imgPath){
+    // A promise is an object that represents the eventual
+    // completion/failure of an asynchronous operation
+    // A promise can be in 3 states:
+        // Pending: Initial state, neither fufilled or rejected
+        // Fufilled: Operation succeeded
+        // Rejected: Operation failed 
     return new Promise((resolve) => {
         const img = new Image();
 
@@ -56,9 +65,9 @@ function validImageChecker(imgPath){
     });
 }
 
+// Custom hook that gets all images of an associated artwork
 function useGetPortfolioImagePaths(portfolioImgPath, currentImgId){
     const [portfolioImagePaths, setPortfolioImagePaths] = useState([]);
-    const maxImages = 12;
 
     useEffect(()=>{
         if (currentImgId == null){
@@ -66,21 +75,34 @@ function useGetPortfolioImagePaths(portfolioImgPath, currentImgId){
             return;
         }
 
-        let portfolioImageContainer = [];
-        for(let i = 0; i < maxImages; i++){
-            let imgPath = portfolioImgPath + currentImgId + "/" + (i) + ".png";
-            validImageChecker(imgPath)
-                .then(isValid => {
-                    if (isValid) {
-                        console.log(imgPath);
-                        portfolioImageContainer.push(imgPath);
-                    } else {
-                        return false;
+        // Asynchronous JS allows the program to run tasks concurrently!
+        // Async/Await builds on promises, but makes it easier to read/understand/maintain
+        // Async functions always return a promise
+        // Await pause the execution of an async function until a promise is resolved/rejected
+            // "Wait for the next step"
+        const load = async () => {
+            const checks = [];
+            for (let i = 0; i < maxImages; i++){
+                let imgPath = portfolioImgPath + currentImgId + "/" + (i) + ".png";
+                //console.log(imgPath);
+
+                const promise = validImageChecker(imgPath).then(valid => {
+                    if (valid) {
+                        // Because this is an async function, imgPath is 
+                        // returned as a proise
+                        return imgPath;
                     }
-            });
+                    return null;
+                });
+                checks.push(promise);
+            }
+            // Waits until all promises are resolved
+            const portfolioImageContainer = await Promise.all(checks);
+            setPortfolioImagePaths(portfolioImageContainer.filter(Boolean));
         };
 
-        setPortfolioImagePaths(portfolioImageContainer);
+        load();
+
     }, [portfolioImgPath, currentImgId]);
 
     return portfolioImagePaths;
@@ -116,8 +138,11 @@ export default function CreateCarousel(){
     const [show, setShow] = useState(false);
     const [currentImgId, setCurrentImgId] = useState(null);
     const [portfolioTitle, setPortfolioTitle] = useState("");
-    //const [portfolioImages, setPortfolioImages] = useState(null);
+    // Source: https://codesandbox.io/p/sandbox/swiper-default-react-forked-xi5tuh?file=%2Fsrc%2FApp.jsx%3A14%2C1-17%2C11
+    const [swiperRef, setSwiperRef] = useState(null);
+    //const swiperRef = useRef();
 
+    // portfolioImagePaths updates when portfolioImgPath or currentImgId changes
     const portfolioImagePaths = useGetPortfolioImagePaths(portfolioImgPath, currentImgId);
     const titles = GetPortfolioTitles(txtFilePath);
 
@@ -127,25 +152,29 @@ export default function CreateCarousel(){
 
     function closeModal(){
         setShow(false);
-        // need to initialize swiper for this method to work
-        //swiper.enable();
+
+        let swiperElement = document.querySelector(".swiper");
+        swiperElement.classList.remove("hover");
+
+        swiperRef.autoplay.resume();
+        swiperRef.enabled = true;
+        swiperRef.update();
     }
 
     function openModal(){
         setShow(true); 
-        //swiper.disable();
+
+        let swiperElement = document.querySelector(".swiper");
+        swiperElement.classList.add("hover");
+
+        swiperRef.autoplay.pause();
+        swiperRef.enabled = false;
     }
 
     useEffect(()=>{
         let portfolioTitleArray = Number(currentImgId) - 1;
         setPortfolioTitle(titles[portfolioTitleArray]);
-        
-        //setPortfolioImages(CreatePortfolioImageElements(portfolioImagePaths));
-        //console.log("Portfolio Images: " + portfolioImages);
     }, [currentImgId, titles]);  
-
-    // Passing an array as a dependency is wacky
-    // Source: https://stackoverflow.com/questions/57859484/useeffect-runs-infinite-loop-despite-no-change-in-dependencies
 
     // Equivalent w/o arrow function is:
         // function handleClose(){
@@ -156,8 +185,12 @@ export default function CreateCarousel(){
 
     return (
         <>
-            <div id="modalDarkenBg"></div>
+            <div id = "overlay"><div/>
             <Swiper
+                onSwiper={(swiper) => {
+                    setSwiperRef(swiper);
+                }}    
+
                 modules={[ Navigation, Pagination, Autoplay]}
                 spaceBetween={50}
                 centeredSlides={true}
@@ -171,6 +204,7 @@ export default function CreateCarousel(){
                     delay: 5000,
                     pauseOnMouseEnter: true,
                 }}
+                
             >
                 <SwiperSlide>
                     <img 
@@ -204,19 +238,76 @@ export default function CreateCarousel(){
                         onClick={(selected)=>{setCurrentImgIdValue(selected); handleShow();}}
                     />
                 </SwiperSlide>
+
+                <SwiperSlide>
+                    <img 
+                        loading="lazy" 
+                        className="swiper-image" 
+                        id="4" 
+                        src = {thumb4} 
+                        alt = "4" 
+                        onClick={(selected)=>{setCurrentImgIdValue(selected); handleShow();}}
+                    />
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <img 
+                        loading="lazy" 
+                        className="swiper-image" 
+                        id="5" 
+                        src = {thumb5} 
+                        alt = "5" 
+                        onClick={(selected)=>{setCurrentImgIdValue(selected); handleShow();}}
+                    />
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <img 
+                        loading="lazy" 
+                        className="swiper-image" 
+                        id="6" 
+                        src = {thumb6} 
+                        alt = "6" 
+                        onClick={(selected)=>{setCurrentImgIdValue(selected); handleShow();}}
+                    />
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <img 
+                        loading="lazy" 
+                        className="swiper-image" 
+                        id="7" 
+                        src = {thumb7} 
+                        alt = "7" 
+                        onClick={(selected)=>{setCurrentImgIdValue(selected); handleShow();}}
+                    />
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <img 
+                        loading="lazy" 
+                        className="swiper-image" 
+                        id="8" 
+                        src = {thumb8} 
+                        alt = "8" 
+                        onClick={(selected)=>{setCurrentImgIdValue(selected); handleShow();}}
+                    />
+                </SwiperSlide>
             </Swiper>
 
             {/* Source: https://react-bootstrap.github.io/docs/components/modal/ */}
             <Modal 
                 show={show}
                 onHide={handleClose}
+                backdrop = "static"
             >
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>
                         <h1 id="portfolioTitle">
                             {portfolioTitle}
                         </h1>
                     </Modal.Title>
+                    <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}>X</button>
                 </Modal.Header>
 
                 <Modal.Body>
