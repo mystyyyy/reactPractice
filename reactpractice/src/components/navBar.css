@@ -37,6 +37,13 @@ li.navLink a, a{
     margin-right: 2.5%;
 }
 
+.socials {
+    width: 100%;
+    height: 100%;
+    max-width: 36px;
+    max-height: 36px;
+}
+
 a > h1{
     height: 6vh;
 }

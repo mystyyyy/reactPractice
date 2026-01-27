@@ -138,38 +138,11 @@ export default function CreateCarousel(){
     const [show, setShow] = useState(false);
     const [currentImgId, setCurrentImgId] = useState(null);
     const [portfolioTitle, setPortfolioTitle] = useState("");
-    // Source: https://codesandbox.io/p/sandbox/swiper-default-react-forked-xi5tuh?file=%2Fsrc%2FApp.jsx%3A14%2C1-17%2C11
     const [swiperRef, setSwiperRef] = useState(null);
-    //const swiperRef = useRef();
 
     // portfolioImagePaths updates when portfolioImgPath or currentImgId changes
     const portfolioImagePaths = useGetPortfolioImagePaths(portfolioImgPath, currentImgId);
     const titles = GetPortfolioTitles(txtFilePath);
-
-    function setCurrentImgIdValue(selected){
-        setCurrentImgId(selected.currentTarget.id);
-    }
-
-    function closeModal(){
-        setShow(false);
-
-        let swiperElement = document.querySelector(".swiper");
-        swiperElement.classList.remove("hover");
-
-        swiperRef.autoplay.resume();
-        swiperRef.enabled = true;
-        swiperRef.update();
-    }
-
-    function openModal(){
-        setShow(true); 
-
-        let swiperElement = document.querySelector(".swiper");
-        swiperElement.classList.add("hover");
-
-        swiperRef.autoplay.pause();
-        swiperRef.enabled = false;
-    }
 
     useEffect(()=>{
         let portfolioTitleArray = Number(currentImgId) - 1;
@@ -182,10 +155,37 @@ export default function CreateCarousel(){
         //  }
     const handleClose = () => closeModal();
     const handleShow = () => openModal(); 
+    function setCurrentImgIdValue(selected){
+        setCurrentImgId(selected.currentTarget.id);
+    }
+
+    function closeModal(){
+        setShow(false);
+
+        let swiperElement = document.querySelector(".swiper");
+        swiperElement.classList.remove("hover");
+
+        document.getElementById("overlay").style.display = "none";
+
+        swiperRef.autoplay.resume();
+        swiperRef.enabled = true;
+        swiperRef.update();
+    }
+
+    function openModal(){
+        setShow(true); 
+
+        let swiperElement = document.querySelector(".swiper");
+        swiperElement.classList.add("hover");
+
+        document.getElementById("overlay").style.display = "block";
+
+        swiperRef.autoplay.pause();
+        swiperRef.enabled = false;
+    }
 
     return (
         <>
-            <div id = "overlay"><div/>
             <Swiper
                 onSwiper={(swiper) => {
                     setSwiperRef(swiper);
@@ -316,6 +316,7 @@ export default function CreateCarousel(){
                     </div>
                 </Modal.Body>
             </Modal>
+            <div id="overlay"></div>
         </>
     );
 }
