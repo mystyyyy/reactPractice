@@ -39,6 +39,7 @@ jobs:
           cd "$REPO_DIR"
         fi
 
+        npm install
         cd "$REPO_DIR/reactpractice"
         npm install
         npm run build
