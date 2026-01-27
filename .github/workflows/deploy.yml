@@ -17,20 +17,22 @@ jobs:
         HOST: ${{ secrets.EC2_HOST }}
         USER: ${{ secrets.EC2_USER }}
       run: |
-        echo "$PRIVATE_KEY" > github-ec2.pem && chmod 600 github-ec2.pem
-        ssh -o StrictHostKeyChecking=no -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa -i github-ec2.pem ${USER}@${HOST} '   
+        echo "$PRIVATE_KEY" > github-ec2.pem
+        chmod 600 github-ec2.pem
+        ssh -o StrictHostKeyChecking=no -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa -i github-ec2.pem ${USER}@${HOST} << 'EOF'   
 
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
         \. "$HOME/.nvm/nvm.sh"
         nvm install node
-        sudo yum install nginx -y
+        nvm use node
+        sudo yum install -y nginx git
 
         REPO_URL="https://github.com/mystyyyy/reactPractice.git"
-        REPO_DIR="$HOME/usr/share/nginx/html"
+        REPO_DIR="/usr/share/nginx/html"
 
         if [ -d "$REPO_DIR/.git" ]; then
           cd "$REPO_DIR"
-          git pull origin main
+          sudo git pull origin main
         else
           git clone "$REPO_URL" "$REPO_DIR"
           cd "$REPO_DIR"
@@ -42,3 +44,4 @@ jobs:
 
         sudo systemctl restart nginx
         '
+        EOF
