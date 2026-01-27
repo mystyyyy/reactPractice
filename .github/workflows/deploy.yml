@@ -34,7 +34,7 @@ jobs:
           cd "$REPO_DIR"
           sudo git pull origin main
         else
-          rm -rf $REPO_DIR/*
+          sudo rm -r $REPO_DIR/*
           git clone "$REPO_URL" "$REPO_DIR"
           cd "$REPO_DIR"
         fi
