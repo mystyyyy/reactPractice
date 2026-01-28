@@ -84,7 +84,7 @@ function useGetPortfolioImagePaths(portfolioImgPath, currentImgId){
             const checks = [];
             for (let i = 0; i < maxImages; i++){
                 let imgPath = portfolioImgPath + currentImgId + "/" + (i) + ".png";
-                //console.log(imgPath);
+                console.log(imgPath);
 
                 const promise = validImageChecker(imgPath).then(valid => {
                     if (valid) {
@@ -145,6 +145,8 @@ export default function CreateCarousel(){
     const titles = GetPortfolioTitles(txtFilePath);
 
     useEffect(()=>{
+        console.log(titles);
+        console.log(currentImgId);
         let portfolioTitleArray = Number(currentImgId) - 1;
         setPortfolioTitle(titles[portfolioTitleArray]);
     }, [currentImgId, titles]);  
