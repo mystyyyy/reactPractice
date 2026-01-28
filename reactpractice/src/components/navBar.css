@@ -42,6 +42,7 @@ li.navLink a, a{
     height: 100%;
     max-width: 36px;
     max-height: 36px;
+    aspect-ratio: 1/1;
 }
 
 a > h1{
