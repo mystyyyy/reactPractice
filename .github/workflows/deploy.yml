@@ -43,5 +43,7 @@ jobs:
         npm install
         npm run build
 
+        cp -rf $REPO_DIR/reactpractice/build/* $REPO_DIR
+
         sudo systemctl restart nginx
         EOF
