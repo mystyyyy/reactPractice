@@ -40,7 +40,7 @@ function GetPortfolioTitles(txtFile){
                 response.text()
             )
             .then(text => {
-                setTitles(text.split('\r\n'));
+                setTitles(text.split(/\r?\n/));
             })
     }, [txtFile]);
 
