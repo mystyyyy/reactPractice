@@ -4,6 +4,7 @@ import "./generalWebsite.css";
 export default function AboutPage(){
     return (
         <>
+            <title>Mysty</title>
             <CreateNav />
             <p>About WIP!</p>
         </>

@@ -4,6 +4,7 @@ import "./generalWebsite.css";
 export default function HomePage(){
     return (
         <>
+            <title>Mysty</title>
             <CreateNav />
         </>
     );

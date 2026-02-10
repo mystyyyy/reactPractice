@@ -65,6 +65,8 @@ function validImageChecker(imgPath){
     });
 }
 
+// Make a function to set current set of images to an empty array
+
 // Custom hook that gets all images of an associated artwork
 function useGetPortfolioImagePaths(portfolioImgPath, currentImgId){
     const [portfolioImagePaths, setPortfolioImagePaths] = useState([]);
@@ -74,6 +76,9 @@ function useGetPortfolioImagePaths(portfolioImgPath, currentImgId){
             setPortfolioImagePaths([]);
             return;
         }
+
+        // Prevent any image "overlap" when loading
+        setPortfolioImagePaths([]);
 
         // Asynchronous JS allows the program to run tasks concurrently!
         // Async/Await builds on promises, but makes it easier to read/understand/maintain

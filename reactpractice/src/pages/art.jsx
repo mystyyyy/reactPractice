@@ -1,12 +1,11 @@
 import CreateNav from "../components/navBar.jsx";
 import "./generalWebsite.css";
 
-export default function ContactPage(){
+export default function HomePage(){
     return (
         <>
-            <title>Mysty</title>
+            <title>Art!</title>
             <CreateNav />
-            <p>Contact WIP!</p>
         </>
     );
 }
