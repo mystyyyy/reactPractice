@@ -6,7 +6,6 @@ export default function AboutPage(){
         <>
             <title>Mysty</title>
             <CreateNav />
-            <p>About WIP!</p>
         </>
     );
 }

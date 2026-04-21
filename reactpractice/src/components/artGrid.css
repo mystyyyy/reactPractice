@@ -1,0 +1,20 @@
+div#imgGridContainer{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    column-gap: 0px;
+    grid-template-columns: repeat(12, auto);
+    grid-template-rows: repeat(12, auto);
+    row-gap: 0px;
+    z-index: 1;
+}
+
+.imageThumbnail{
+    width: 100%;
+    height: 100%;
+}
+
+.imageModal{
+    width: 100%;
+    height: 100%;
+}

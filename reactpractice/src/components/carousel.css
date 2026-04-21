@@ -15,6 +15,7 @@
 .swiper-image{
     width: 100vw;
     height: 100vh;
+    object-fit: cover;
 }
 
 .modal{
@@ -69,14 +70,18 @@
     overflow-y: scroll;
 }
 
+/*
 .modalImage{
     width: auto;
+    height: auto;
+    object-fit: cover;
     max-width: 80%;
     max-height: 50%;
     margin: 2vh auto;
     display:block;
     border: 3px solid rgb(232,219,195);
 }
+    */
 
 h1#portfolioTitle{
     color: rgb(88,47,41);
@@ -94,3 +99,5 @@ h1#portfolioTitle{
     right: 0;
     bottom: 0;
 }
+
+/* add scaling for tablet and mobile */

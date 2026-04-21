@@ -13,21 +13,27 @@ ul#navLinkList{
     margin: auto 0;
     max-width: auto;
     width: 100%;
-    height: 6vh;
+    height: auto;
 }
 
-li.navLink{
+.navLink{
     list-style: none;
     margin-right: 5%;
+    text-decoration: none;
 }
 
-li.navLink a, a{
-    text-decoration: none;
-    color: inherit;
+p.navLink{
+    font-size: large;
 }
 
 #linksContainer{
     display: flex;
+    background-color:rgb(88,47,41);
+}
+
+.links{
+    width: 100%;
+    height: 100px;
 }
 
 #socialsContainer{
@@ -41,10 +47,14 @@ li.navLink a, a{
     height: 100%;
     max-width: 36px;
     max-height: 36px;
+    object-fit: contain;
     aspect-ratio: 1/1;
 }
 
 a > h1{
-    height: 6vh;
+    height: auto;
+    margin: auto;
 }
 
+/* add scaling for tablet and mobile */
+    /* convert to hamburger menu when too small*/
