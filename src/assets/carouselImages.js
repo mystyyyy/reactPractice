@@ -7,13 +7,39 @@ import thumb6 from "./carouselImages/thumbnail6.png";
 import thumb7 from "./carouselImages/thumbnail7.png";
 import thumb8 from "./carouselImages/thumbnail8.png";
 
-export default {
-    thumb1,
-    thumb2,
-    thumb3,
-    thumb4,
-    thumb5,
-    thumb6,
-    thumb7,
-    thumb8
-};
+const carouselImages = [
+    {
+        img: thumb1,
+        alt: ""
+    },
+    {
+        img: thumb2,
+        alt: ""
+    },
+    {
+        img: thumb3,
+        alt: ""
+    },
+    {
+        img: thumb4,
+        alt: ""
+    },
+    {
+        img: thumb5,
+        alt: ""
+    },
+    {
+        img: thumb6,
+        alt: ""
+    },
+    {
+        img: thumb7,
+        alt: ""
+    },
+    {
+        img: thumb8,
+        alt: ""
+    }
+];
+
+export default carouselImages;

@@ -12,7 +12,7 @@ function CreateNavBar(){
                         <Link className = "navLink" to = "/"><h1>Mysty</h1></Link>
                         <Link className = "navLink" to = "/illustrations"><p>Illustrations</p></Link>
                         <Link className = "navLink" to = "/concepts"><p>Concept Art</p></Link>
-                        <Link className = "navLink" to = "/sketches"><p>Sketches</p></Link>
+                        <Link className = "navLink" to = "/misc"><p>Misc. Art</p></Link>
                         <Link className = "navLink" to = "/about"><p>About</p></Link>
                     </ul>
 

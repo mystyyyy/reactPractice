@@ -40,11 +40,12 @@ import illust6D from "./illustrationImages/illust6D.png";
 import illust6E from "./illustrationImages/illust6E.png";
 
 // 2d array
-export default [
-    // Thumbnails
+const illustrationImages = [
+    // Thumbnail
     [
         {
             img: thumb1,
+            title:"1",
             alt: "",
             gridColumnStart: 1,
             gridColumnEnd: 1,
@@ -53,6 +54,7 @@ export default [
         },
         {
             img: thumb2,
+            title:"2",
             alt: "",
             gridColumnStart: 2,
             gridColumnEnd: 2,
@@ -61,6 +63,7 @@ export default [
         },
         {
             img: thumb3,
+            title:"3",
             alt: "",
             gridColumnStart: 3,
             gridColumnEnd: 3,
@@ -69,6 +72,7 @@ export default [
         },
         {
             img: thumb4,
+            title:"4",
             alt: "",
             gridColumnStart: 4,
             gridColumnEnd: 4,
@@ -77,6 +81,7 @@ export default [
         },
         {
             img: thumb5,
+            title:"5",
             alt: "",
             gridColumnStart: 5,
             gridColumnEnd: 5,
@@ -85,6 +90,7 @@ export default [
         },
         {
             img: thumb6,
+            title:"6",
             alt: "",
             gridColumnStart: 6,
             gridColumnEnd: 6,
@@ -223,3 +229,5 @@ export default [
         }
     ]
 ];
+
+export default illustrationImages;

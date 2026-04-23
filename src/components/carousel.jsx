@@ -31,85 +31,17 @@ export default function CreateCarousel(){
                 }}
                 
             >
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="1"
-                        src = {carouselImages.thumb1} 
-                        alt = "1" 
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="2" 
-                        src = {carouselImages.thumb2} 
-                        alt = "2" 
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="3" 
-                        src = {carouselImages.thumb3} 
-                        alt = "3" 
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="4" 
-                        src = {carouselImages.thumb4} 
-                        alt = "4" 
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="5" 
-                        src = {carouselImages.thumb5} 
-                        alt = "5" 
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="6" 
-                        src = {carouselImages.thumb6} 
-                        alt = "6" 
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="7" 
-                        src = {carouselImages.thumb7} 
-                        alt = "7" 
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <img 
-                        loading="lazy" 
-                        className="swiper-image" 
-                        id="8" 
-                        src = {carouselImages.thumb8} 
-                        alt = "8" 
-                    />
-                </SwiperSlide>
+                {carouselImages.map((images, i) =>
+                    <SwiperSlide>
+                        <img 
+                            loading="lazy" 
+                            className="swiper-image" 
+                            id="i"
+                            src = {images.img} 
+                            alt = {images.alt}
+                        />
+                    </SwiperSlide>
+                )}
             </Swiper>
         </>
     );
