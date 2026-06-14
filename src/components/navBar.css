@@ -26,6 +26,10 @@ p.navLink{
     font-size: large;
 }
 
+.navLink > p:hover, .navLink > h1:hover{
+    color: rgb(243, 59, 99);
+}
+
 #linksContainer{
     display: flex;
     background-color:rgb(88,47,41);
@@ -56,5 +60,6 @@ a > h1{
     margin: auto;
 }
 
-/* add scaling for tablet and mobile */
-    /* convert to hamburger menu when too small*/
+@media (max-width:600px){
+
+}

@@ -1,13 +1,22 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face{
+  font-family: WinkySans;
+  src: url("../public/WinkySans-SemiBold.ttf");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+
+@font-face{
+  font-family: ChironGoRound;
+  src: url("../public/ChironGoRoundTC-Regular.ttf");
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: WinkySans;
+}
+
+body {
+  margin: 0;
+  font-family: ChironGoRound;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

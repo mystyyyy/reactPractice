@@ -5,7 +5,7 @@
 .swiper{
     width: 100vw;
     height: 100vh;
-    cursor: pointer;
+    background-color: rgb(243, 59, 99);
 }
 
 .swiper-image{
@@ -27,4 +27,6 @@
     bottom: 0;
 }
 
-/* add scaling for tablet and mobile */
+@media (max-width:600px){
+
+}

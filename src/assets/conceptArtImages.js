@@ -25,21 +25,23 @@ const conceptArtImages = [
     [
         {
             img: thumb1,
-            title:"1",
+            title:"OC - Cherry",
+            year: "2023",
             alt: "",
             gridColumnStart: 1,
-            gridColumnEnd: 1,
+            gridColumnSpan: 6,
             gridRowStart: 1,
-            gridRowEnd: 1
+            gridRowSpan: 6
         },
         {
             img: thumb2,
-            title:"2",
+            title:"VALORANT OC - Maestro",
+            year: "2023",
             alt: "",
-            gridColumnStart: 2,
-            gridColumnEnd: 2,
-            gridRowStart: 2,
-            gridRowEnd: 2
+            gridColumnStart: 7,
+            gridColumnSpan: 6,
+            gridRowStart: 1,
+            gridRowSpan: 6
         }
     ],
     [

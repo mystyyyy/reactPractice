@@ -4,6 +4,12 @@ import thumb3 from "./illustrationImages/thumbnail3.png";
 import thumb4 from "./illustrationImages/thumbnail4.png";
 import thumb5 from "./illustrationImages/thumbnail5.png";
 import thumb6 from "./illustrationImages/thumbnail6.png";
+import thumb7 from "./illustrationImages/thumbnail7.png";
+import thumb8 from "./illustrationImages/thumbnail8.png";
+import thumb9 from "./illustrationImages/thumbnail9.png";
+import thumb10 from "./illustrationImages/thumbnail10.png";
+import thumb11 from "./illustrationImages/thumbnail11.png";
+import thumb12 from "./illustrationImages/thumbnail12.png";
 
 import illust1A from "./illustrationImages/illust1A.png";
 import illust1B from "./illustrationImages/illust1B.png";
@@ -39,63 +45,156 @@ import illust6C from "./illustrationImages/illust6C.png";
 import illust6D from "./illustrationImages/illust6D.png";
 import illust6E from "./illustrationImages/illust6E.png";
 
+import illust7A from "./illustrationImages/illust7A.png";
+import illust7B from "./illustrationImages/illust7B.png";
+import illust7C from "./illustrationImages/illust7C.png";
+import illust7D from "./illustrationImages/illust7D.png";
+import illust7E from "./illustrationImages/illust7E.png";
+
+import illust8A from "./illustrationImages/illust8A.png";
+import illust8B from "./illustrationImages/illust8B.png";
+import illust8C from "./illustrationImages/illust8C.png";
+import illust8D from "./illustrationImages/illust8D.png";
+import illust8E from "./illustrationImages/illust8E.png";
+
+import illust9A from "./illustrationImages/illust9A.png";
+import illust9B from "./illustrationImages/illust9B.png";
+import illust9C from "./illustrationImages/illust9C.png";
+import illust9D from "./illustrationImages/illust9D.png";
+import illust9E from "./illustrationImages/illust9E.png";
+
+import illust10A from "./illustrationImages/illust10A.png";
+
+import illust11A from "./illustrationImages/illust11A.png";
+
+import illust12A from "./illustrationImages/illust12A.png";
+import illust12B from "./illustrationImages/illust12B.png";
+import illust12C from "./illustrationImages/illust12C.png";
+import illust12D from "./illustrationImages/illust12D.png";
+
 // 2d array
 const illustrationImages = [
     // Thumbnail
     [
         {
             img: thumb1,
-            title:"1",
+            title:"House of Memories",
+            year: "2024",
             alt: "",
             gridColumnStart: 1,
-            gridColumnEnd: 1,
+            gridColumnSpan: 7,
             gridRowStart: 1,
-            gridRowEnd: 1
+            gridRowSpan: 3
         },
         {
             img: thumb2,
-            title:"2",
+            title:"Cruisin'",
+            year: "2026",
             alt: "",
-            gridColumnStart: 2,
-            gridColumnEnd: 2,
-            gridRowStart: 2,
-            gridRowEnd: 2
+            gridColumnStart: 1,
+            gridColumnSpan: 7,
+            gridRowStart: 4,
+            gridRowSpan: 3
         },
         {
             img: thumb3,
-            title:"3",
+            title:"Muse",
+            year: "2026",
             alt: "",
-            gridColumnStart: 3,
-            gridColumnEnd: 3,
-            gridRowStart: 3,
-            gridRowEnd: 3
+            gridColumnStart: 1,
+            gridColumnSpan: 7,
+            gridRowStart: 7,
+            gridRowSpan: 3
         },
         {
             img: thumb4,
-            title:"4",
+            title:"Comfy",
+            year: "2026",
             alt: "",
-            gridColumnStart: 4,
-            gridColumnEnd: 4,
-            gridRowStart: 4,
-            gridRowEnd: 4
+            gridColumnStart: 1,
+            gridColumnSpan: 7,
+            gridRowStart: 10,
+            gridRowSpan: 3
         },
         {
             img: thumb5,
-            title:"5",
+            title:"Windows",
+            year: "2026",
             alt: "",
-            gridColumnStart: 5,
-            gridColumnEnd: 5,
-            gridRowStart: 5,
-            gridRowEnd: 5
+            gridColumnStart: 8,
+            gridColumnSpan: 5,
+            gridRowStart: 1,
+            gridRowSpan: 4
         },
         {
             img: thumb6,
-            title:"6",
+            title:"Smokeshow",
+            year: "2026",
             alt: "",
-            gridColumnStart: 6,
-            gridColumnEnd: 6,
-            gridRowStart: 6,
-            gridRowEnd: 6
+            gridColumnStart: 8,
+            gridColumnSpan: 5,
+            gridRowStart: 5,
+            gridRowSpan: 7
+        },
+        {
+            img: thumb7,
+            title:"Redraw - 7 Years Later",
+            year: "2024",
+            alt: "",
+            gridColumnStart: 1,
+            gridColumnSpan: 3,
+            gridRowStart: 13,
+            gridRowSpan: 3
+        },
+        {
+            img: thumb8,
+            title:"Gaze",
+            year: "2026",
+            alt: "",
+            gridColumnStart: 4,
+            gridColumnSpan: 4,
+            gridRowStart: 13,
+            gridRowSpan: 3
+        },
+        {
+            img: thumb9,
+            title:"Strong Woman with Big Sword",
+            year: "2026",
+            alt: "",
+            gridColumnStart: 8,
+            gridColumnSpan: 5,
+            gridRowStart: 12,
+            gridRowSpan: 4
+        },
+        {
+            img: thumb10,
+            title:"Chillin'",
+            year: "2026",
+            alt: "",
+            gridColumnStart: 1,
+            gridColumnSpan: 4,
+            gridRowStart: 16,
+            gridRowSpan: 3
+        },
+        {
+            img: thumb11,
+            title:"Sludge",
+            year: "2026",
+            alt: "",
+            gridColumnStart: 5,
+            gridColumnSpan: 4,
+            gridRowStart: 16,
+            gridRowSpan: 3
+        },
+        {
+            img: thumb12,
+            title:"Fall",
+            year: "2026",
+            alt: "",
+            gridColumnStart: 9,
+            gridColumnSpan: 4,
+            gridRowStart: 16,
+            gridRowSpan: 3
         }
     ],
     // Illustration 1
@@ -225,6 +324,108 @@ const illustrationImages = [
         },
         {
             img: illust6E,
+            alt: ""
+        }
+    ],
+    // Illustration 7
+    [
+        {
+            img: illust7A,
+            alt: ""
+        },
+        {
+            img: illust7B,
+            alt: ""
+        },
+        {
+            img: illust7C,
+            alt: ""
+        },
+        {
+            img: illust7D,
+            alt: ""
+        },
+        {
+            img: illust7E,
+            alt: ""
+        }
+    ],
+    // Illustration 8
+    [
+        {
+            img: illust8A,
+            alt: ""
+        },
+        {
+            img: illust8B,
+            alt: ""
+        },
+        {
+            img: illust8C,
+            alt: ""
+        },
+        {
+            img: illust8D,
+            alt: ""
+        },
+        {
+            img: illust8E,
+            alt: ""
+        }
+    ],
+    // Illustration 9
+    [
+        {
+            img: illust9A,
+            alt: ""
+        },
+        {
+            img: illust9B,
+            alt: ""
+        },
+        {
+            img: illust9C,
+            alt: ""
+        },
+        {
+            img: illust9D,
+            alt: ""
+        },
+        {
+            img: illust9E,
+            alt: ""
+        }
+    ],
+    // Illustration 10
+    [
+        {
+            img: illust10A,
+            alt: ""
+        }
+    ],
+    // Illustration 11
+    [
+        {
+            img: illust11A,
+            alt: ""
+        }
+    ],
+    // Illustration 12
+    [
+        {
+            img: illust12A,
+            alt: ""
+        },
+        {
+            img: illust12B,
+            alt: ""
+        },
+        {
+            img: illust12C,
+            alt: ""
+        },
+        {
+            img: illust12D,
             alt: ""
         }
     ]

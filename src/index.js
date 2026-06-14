@@ -5,8 +5,8 @@ import './index.css';
 import Home from './pages/home.jsx';
 import Illustration from './pages/illustration.jsx';
 import Concept from './pages/concept.jsx';
-import MiscArt from './pages/miscArt.jsx';
-import About from './pages/about.jsx';
+//import MiscArt from './pages/miscArt.jsx';
+//import About from './pages/about.jsx';
 //import reportWebVitals from './reportWebVitals';
 
 // window.React1 = require('react');
@@ -19,8 +19,9 @@ root.render(
         <Route path = "/" element = { <Home /> } ></Route>
         <Route path = "/illustrations" element = { <Illustration /> } ></Route>
         <Route path = "/concepts" element = { <Concept /> } ></Route>
-        <Route path = "/misc" element = { <MiscArt /> } ></Route>
-        <Route path = "/about" element = { <About /> } ></Route>
+        {/*<Route path = "/misc" element = { <MiscArt /> } ></Route>*/}
+        {/*<Route path = "/oc" element = { <OC /> } ></Route>*/}
+        {/*<Route path = "/about" element = { <About /> } ></Route>*/}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
